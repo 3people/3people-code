@@ -13,7 +13,7 @@ struct tnode {
 };
 
 struct tnode *addtree(struct tnode *, char *);
-void treeprint(struct tnode *);
+void treeprint(struct tnode *, char *key[]);
 int getword(char *, int);
 char *blacklist[] = {"a", "the", "is", "was", "are", "were", "have", "had", "they", "you", "your", "it", "don’t", "of", "in", "with", "that", "which"};
 /* word frequency count */
@@ -23,6 +23,7 @@ int main() {
 	char word[MAXWORD];
 	int flag = 0;
 	int i;
+	char *key[1000];
 
 	root = NULL;
 
@@ -38,7 +39,11 @@ int main() {
 			root = addtree(root, word);
 		}
 	}
-	treeprint(root);
+	treeprint(root, key);
+
+	for(int j = 0; key[j] != NULL ; j++){
+		printf("%s\n", key[j]);
+	}
 	return 0;
 }
 
@@ -63,15 +68,13 @@ struct tnode *addtree(struct tnode *p, char *w) {
 		p->right = addtree(p->right, w);
 	return p;
 }
-
+int i = 0;
 /* treeprint: in-order print of tree p */
-void treeprint(struct tnode *p) {
+void treeprint(struct tnode *p, char *key[]) {
 	if (p != NULL) {
-		treeprint(p->left);
-		if (p->count > 1) {
-			printf("%4d %s\n", p->count, p->word);
-		}
-		treeprint(p->right);
+		treeprint(p->left, key);
+		key[i++] = p->word;
+		treeprint(p->right, key);
 	}
 }
 
