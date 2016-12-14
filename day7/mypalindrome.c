@@ -5,7 +5,6 @@ int palindrome(char *s, int l){
   for(int i = 0; i*2 <= l; i++){
     if(*(s+i) != *(s+l-i-1))
       ans = 0;
-    printf("%c %c\n",*(s+i),*(s+l-i-1));
   }
   return ans;
 }
