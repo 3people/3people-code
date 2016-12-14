@@ -10,7 +10,7 @@ void writelines(char *lineptr[], int nlines);
 
 void qsort(char *lineptr[], int left, int right);
 
-main() {
+int main() {
 	int nlines;
 
 	if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {

@@ -27,6 +27,17 @@ int strindex(char s[], char t[]) {
 	return -1;
 }
 
+int strindexptr(char *s, char *t){
+	char *temps, *tempt;
+	for(; *s != '\0'; s++){
+		for(temps = s, tempt = t; tempt != '\0' && *temps == *tempt; temps++, tempt++)
+			;
+		if(t != tempt && *tempt == '\0'){
+			return temps-s;
+		}
+		return -1;
+	}
+}
 char pattern[] = "ould"; /* pattern to search for */
 
 /* find all lines matching pattern */
